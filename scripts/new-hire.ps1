@@ -10,8 +10,18 @@ $TenantDomain = "m4n5.onmicrosoft.com"
 
 $UPN = "$MailNickname@$TenantDomain"
 
+$TempPassword = Read-Host "Enter temporary password"
+
+$RandomPassword = -join (
+    (65..90) +
+    (97..122) +
+    (48..57) |
+    Get-Random -Count 12 |
+    ForEach-Object {[char]$_}
+)
+
 $PasswordProfile = @{
-    Password = "P@ssword123!"
+    Password = $RandomPassword
 }
 
 Write-Host "Creating user: $DisplayName"
