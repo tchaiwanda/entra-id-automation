@@ -55,8 +55,18 @@ if ($CurrentDepartmentGroupId)
     
     Remove-MgGroupMemberByRef -GroupId $CurrentDepartmentGroupId -DirectoryObjectId $User.Id
     
-    Write-Host "User removed sucessfully!"
+    Write-Host "User removed successfully!"
     Write-Host ""
     Write-Host "Adding user to new department..."
+
+    New-MgGroupMember -GroupId $TargetGroupID -DirectoryObjectId -User.Id
+
+    Write-Host "User added Successfully!"
 }
 
+Write-Host ""
+Write-Host "Adding user to new department..."
+
+New-MgGroupMember -GroupId $TargetGroupID -DirectoryObjectId $User.Id
+
+Write-Host "User added successfully!"

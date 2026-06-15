@@ -10,8 +10,6 @@ $TenantDomain = "m4n5.onmicrosoft.com"
 
 $UPN = "$MailNickname@$TenantDomain"
 
-$TempPassword = Read-Host "Enter temporary password"
-
 $RandomPassword = -join (
     (65..90) +
     (97..122) +
