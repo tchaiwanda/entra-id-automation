@@ -2,20 +2,22 @@
 
 ## Overview
 
-This project automates the identity lifecycle within Microsoft Entra ID using PowerShell 7 and the Microsoft Graph PowerShell SDK.
-
-The solution was built to simulate common Identity and Access Management (IAM) operations performed by enterprise identity teams, including user onboarding, department-based access changes, and offboarding.
+This project automates the identity lifecycle within Microsoft Entra ID using PowerShell 7 and the Microsoft Graph PowerShell SDK. The solution was built to simulate Identity and Access Management (IAM) operations commonly performed by enterprise identity teams, including user onboarding, department-based access management, department transfers, and offboarding. The project demonstrates how Microsoft Graph can be used to automate access provisioning, role changes, and user deprovisioning while maintaining an auditable record of administrative actions.
 
 The project demonstrates practical experience with:
 
 * PowerShell automation
 * Microsoft Graph API
 * Microsoft Entra ID
-* RBAC-based group assignments
+* Role-based access through Entra ID group assignments
 * Identity lifecycle management
 * Audit logging and compliance reporting
 
 ---
+
+## Project Summary
+
+Developed a PowerShell and Microsoft Graph automation solution for the full Microsoft Entra ID identity lifecycle, including user onboarding, department-based access provisioning, role changes, offboarding, session revocation, and audit logging. The project demonstrates practical IAM concepts including access management, identity governance, lifecycle automation, and compliance-focused reporting.
 
 ## Features
 
@@ -186,7 +188,10 @@ During development, this project provided hands-on experience with:
 * PowerShell objects and properties
 * Hashtables and lookup tables
 * Group membership management
-* Error handling and validation
+* Error handling and validation• Microsoft Graph PowerShell SDK administration
+* User lifecycle automation design
+* Access provisioning and deprovisioning workflows
+* Audit trail generation for compliance support
 * Audit logging
 * Git and GitHub workflows
 * Identity lifecycle automation concepts
@@ -197,12 +202,15 @@ During development, this project provided hands-on experience with:
 
 Planned improvements include:
 
-* Microsoft 365 license assignment
+* Automated Microsoft 365 license provisioning and removal
 * Bulk onboarding via CSV import
 * Role-based access templates
 * Manager approval workflows
 * Reporting dashboards
 * Automated access reviews
+* Automated group-based licensing
+* Account expiration workflows
+* Privileged access assignment automation
 
 ---
 
