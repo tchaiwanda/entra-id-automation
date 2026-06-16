@@ -25,7 +25,7 @@ function Write-AuditLog {
 
 $DepartmentGroups = @{
     HR          = "a09c9258-b90e-4516-889d-7015d01e0b3e"
-    IT          = "ce5cb2cb-df7f-487e-bc0b-3d62fcb4017e"
+    IT          = "ce5cb2cb-df74-487e-bc0b-3d62fcb4017e"
     Managers    = "2a462717-d430-4717-a0ad-557e46172115"
     Contractors = "032c9d23-e453-43da-8fae-99d762ce8814"
 }

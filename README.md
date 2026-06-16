@@ -23,6 +23,8 @@ Developed a PowerShell and Microsoft Graph automation solution for the full Micr
 
 ### User Onboarding
 
+![New Hire](screenshots/new-hire-success.png)
+
 Creates new users in Entra ID and assigns department-based access.
 
 * Creates user accounts
@@ -41,6 +43,10 @@ Supported departments:
 
 ### Department Transfers
 
+![Department Transfer](screenshots/department-transfer1.png)
+
+![Department Transfer](screenshots/department-transfer.png)
+
 Automates user access changes when employees move between departments.
 
 * Detects current department membership
@@ -53,6 +59,8 @@ Automates user access changes when employees move between departments.
 ---
 
 ### User Offboarding
+
+![Offboarding](screenshots/offboard-user.png)
 
 Automates core offboarding activities.
 
@@ -164,6 +172,7 @@ Administrative actions are logged to:
 ```text
 .\logs\audit.log
 ```
+![Audit Log](screenshots/audit-log.png)
 
 Example:
 

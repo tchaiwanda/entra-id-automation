@@ -18,11 +18,12 @@ function Write-AuditLog {
         [string]$TargetUser,
         [string]$Details
     )
+
     $Timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
-
     $LogEntry = "$Timestamp | $env:USERNAME | $Action | $TargetUser | $Details"
-
-    Add-Content -Path ".\logs\audit.log" -Value $LogEntry
+    $LogPath = Join-Path $PSScriptRoot "..\logs\audit.log"
+    
+    Add-Content -Path $LogPath -Value $LogEntry
 }
 
 $DisplayName = "$FirstName $LastName"
