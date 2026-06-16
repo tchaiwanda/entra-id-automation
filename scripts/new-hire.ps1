@@ -1,8 +1,30 @@
+# new-hire.ps1
+#
+# Creates a new Microsoft Entra ID user account
+# Generates a temporary password
+# Creates the user in Microsoft Graph
+# Assigns the user to a department group
+# Supports HR, IT, Managers, and Contractors
+
 param(
     [string]$FirstName, 
     [string]$LastName,
     [string]$Department
 )
+
+function Write-AuditLog {
+    param (
+        [string]$Action,
+        [string]$TargetUser,
+        [string]$Details
+    )
+    $Timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
+
+    $LogEntry = "$Timestamp | $env:USERNAME | $Action | $TargetUser | $Details"
+
+    Add-Content -Path ".\logs\audit.log" -Value $LogEntry
+}
+
 $DisplayName = "$FirstName $LastName"
 $MailNickname = "$FirstName.$LastName".ToLower()
 
@@ -42,6 +64,8 @@ catch {
     Write-Host "User Creation Failed:"
     Write-Host $_
 }
+
+Write-AuditLog -Action "User Created" -TargetUser $DisplayName -Details $Department
 
 if ($Department -eq "HR")
 {

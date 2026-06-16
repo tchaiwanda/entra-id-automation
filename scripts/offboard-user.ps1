@@ -16,6 +16,18 @@ if (-not $User)
     Write-Host "User does not exist."
     return
 }
+function Write-AuditLog {
+    param (
+        [string]$Action,
+        [string]$TargetUser,
+        [string]$Details
+    )
+    $Timestamp = Get-Date -Format "yyyy-MM-dd HH:mm:ss"
+
+    $LogEntry = "$Timestamp | $env:USERNAME | $Action | $TargetUser | $Details"
+
+    Add-Content -Path ".\logs\audit.log" -Value $LogEntry
+}
 
 Write-Host "Found User: $($User.DisplayName)"
 Write-Host ""
@@ -24,9 +36,13 @@ Write-Host "Disabling account..."
 Update-MgUser -UserId $User.Id -AccountEnabled:$false
 Write-Host "Account disabled!"
 
+Write-AuditLog -Action "Account Disabled" -TargetUser $User.DisplayName -Details "Account disabled"
+
 Write-Host "Revoking active sessions..."
 $null = Revoke-MgUserSignInSession -UserId $User.Id
 Write-Host "Sessions revoked!"
+
+Write-AuditLog -Action "Sessions revoked" -TargetUser $User.DisplayName -Details "All active sessions revoked!"
 
 
 $DepartmentGroups = @{
@@ -57,13 +73,13 @@ if ($CurrentDepartmentGroupId)
     Write-Host ""
     Write-Host "Removing department group..."
 
-    Remove-MgGroupMemberByRef `
-        -GroupId $CurrentDepartmentGroupId `
-        -DirectoryObjectId $User.Id
-
+    Remove-MgGroupMemberByRef -GroupId $CurrentDepartmentGroupId -DirectoryObjectId $User.Id
     Write-Host "Department group removed!"
+
+Write-AuditLog -Action "Group Removed" -TargetUser $User.DisplayName -Details "Removed group $CurrentDepartmentGroupId"
 }
 else
 {
     Write-Host "No department group found."
 }
+Write-AuditLog -Action "Department Change" -TargetUser $User.DisplayName -Details "$OldDepartment -> $NewDepartment"
