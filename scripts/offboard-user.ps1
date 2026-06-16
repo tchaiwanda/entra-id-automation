@@ -22,8 +22,12 @@ Write-Host ""
 Write-Host "Disabling account..."
 
 Update-MgUser -UserId $User.Id -AccountEnabled:$false
-
 Write-Host "Account disabled!"
+
+Write-Host "Revoking active sessions..."
+$null = Revoke-MgUserSignInSession -UserId $User.Id
+Write-Host "Sessions revoked!"
+
 
 $DepartmentGroups = @{
     HR          = "a09c9258-b90e-4516-889d-7015d01e0b3e"
@@ -44,16 +48,22 @@ foreach($Group in $CurrentGroups)
 }
 
 Write-Host ""
-Write-Host "Department Group Found:"
-Write-Host $CurrentDepartmentGroupId
 
-if ($CurrentDepartmentGroupId) 
+if ($CurrentDepartmentGroupId)
 {
+    Write-Host "Department Group Found:"
+    Write-Host $CurrentDepartmentGroupId
+
     Write-Host ""
     Write-Host "Removing department group..."
-    
-    Remove-MgGroupMemberByRef -GroupId $CurrentDepartmentGroupId -DirectoryObjectId $User.Id
-    
-    Write-Host "Department group removed!" <# Action to perform if the condition is true #>
-}
 
+    Remove-MgGroupMemberByRef `
+        -GroupId $CurrentDepartmentGroupId `
+        -DirectoryObjectId $User.Id
+
+    Write-Host "Department group removed!"
+}
+else
+{
+    Write-Host "No department group found."
+}
