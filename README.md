@@ -177,11 +177,11 @@ Administrative actions are logged to:
 Example:
 
 ```text
-2025-06-15 23:08:50 | becky | Account Disabled | Alyssa Johnson | Account disabled
+2025-06-15 23:08:50 | ****** | Account Disabled | Alyssa Johnson | Account disabled
 
-2025-06-15 23:08:51 | becky | Sessions Revoked | Alyssa Johnson | All active sessions revoked
+2025-06-15 23:08:51 | ****** | Sessions Revoked | Alyssa Johnson | All active sessions revoked
 
-2025-06-15 23:35:49 | becky | Department Change | Alyssa Johnson | HR -> Managers
+2025-06-15 23:35:49 | ****** | Department Change | Alyssa Johnson | HR -> Managers
 ```
 
 The audit log provides a simple record of administrative actions that can support compliance reviews, access certifications, and troubleshooting.
