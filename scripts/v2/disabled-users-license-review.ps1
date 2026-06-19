@@ -7,6 +7,10 @@ foreach ($User in $Users)
         Write-Host "Disabled User Found:"
         Write-Host $User.DisplayName
         Write-Host ""
+        Write-Host "Checking:"
+        Write-Host $User.DisplayName
+        Write-Host $User.UserPrincipalName
+        Write-Host ""
 
             #Is User still consuming licenses?
 $Licenses = Get-MgUserLicenseDetail -UserId $User.UserPrincipalName
